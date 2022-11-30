@@ -60,7 +60,7 @@ namespace TechTyccoon2
             Console.WriteLine("\n\nPlease enter a command:\n");
 
 
-            CommandHandler();
+            HandleCommand();
 
         }
 
@@ -90,94 +90,92 @@ namespace TechTyccoon2
 
         }
 
-        public static void CommandHandler()
+        public static void HandleCommand()
         {
             string input = string.Format(Console.ReadLine());
             if(input.Length == 0)
             {
-                CommandHandler();
+                HandleCommand();
             }
             List<string> args = new List<string>();
-
             args = Utils.ParseParameters(input);
-            if(args.Count == 0)
-            {
-                CommandHandler();
-            }
 
-            string command = args[0];
+            CommandHandler.HandleCommand(args);
 
-            switch (command)
-            {
-                case ("search"):
-                {
-                     if (args.Count == 2)
-                    {
-                            bool succeeded;
-                            int i;
-                            succeeded = int.TryParse(args[1], out i);
-
-                            if (succeeded == false)
-                            {
-                                Utils.SendError("Invalid company id!");
-                                break;
-                            }
-                            if (i >= Companies.Count())
-                            {
-                                Utils.SendError("Invalid company id!");
-                                break;
-                            }
+       
 
 
-                        Company Company = Companies.SearchIndex(i-1);
-                        Console.WriteLine($"{Company.Name}\n - Balance: ${Company.CurrentFunds}\n");
-                        CommandHandler();
-                        break;
-                        }
-                        else
-                        {
-                            Utils.SendError("Please enter some arguments for search! Ex: search <company id>");
-                            CommandHandler();
-                            break;
-                        }
-                    }
-                case ("progress"):
-                    {
-                        int progress = 0;
-                        if (args.Count == 2)
-                        {
-                            progress = int.Parse(args[1]);
-                        }
-                        else
-                        {
-                            progress++;
-                        }
-                        ProgressTime(progress);
-                        Utils.SendSuccess($"You have progressed time by {progress} years!");
+            //switch (command)
+            //{
+            //    case ("search"):
+            //    {
+            //         if (args.Count == 2)
+            //        {
+            //                bool succeeded;
+            //                int i;
+            //                succeeded = int.TryParse(args[1], out i);
 
-                        break;
-                    }
-                case ("time"):
-                    {
-                        Utils.SendCustom($"This simulation is on Year {Year}", ConsoleColor.Yellow);
-                        break;
-                    }
-                case ("clear"):
-                    {
-                        Console.Clear();
-                        break;
-                    }
-                default:
-                    {
-                        Utils.SendError("Invalid command!");
-                        CommandHandler();
-                        break;
-                    }
+            //                if (succeeded == false)
+            //                {
+            //                    Utils.SendError("Invalid company id!");
+            //                    break;
+            //                }
+            //                if (i >= Companies.Count())
+            //                {
+            //                    Utils.SendError("Invalid company id!");
+            //                    break;
+            //                }
+
+
+            //            Company Company = Companies.SearchIndex(i-1);
+            //            Console.WriteLine($"{Company.Name}\n - Balance: ${Company.CurrentFunds}\n");
+            //            CommandHandler();
+            //            break;
+            //            }
+            //            else
+            //            {
+            //                Utils.SendError("Please enter some arguments for search! Ex: search <company id>");
+            //                CommandHandler();
+            //                break;
+            //            }
+            //        }
+            //    case ("progress"):
+            //        {
+            //            int progress = 0;
+            //            if (args.Count == 2)
+            //            {
+            //                progress = int.Parse(args[1]);
+            //            }
+            //            else
+            //            {
+            //                progress++;
+            //            }
+            //            ProgressTime(progress);
+            //            Utils.SendSuccess($"You have progressed time by {progress} years!");
+
+            //            break;
+            //        }
+            //    case ("time"):
+            //        {
+            //            Utils.SendCustom($"This simulation is on Year {Year}", ConsoleColor.Yellow);
+            //            break;
+            //        }
+            //    case ("clear"):
+            //        {
+            //            Console.Clear();
+            //            break;
+            //        }
+            //    default:
+            //        {
+            //            Utils.SendError("Invalid command!");
+            //            CommandHandler();
+            //            break;
+            //        }
             
                    
                   
-            }
-            CommandHandler();
+            //}
+            HandleCommand();
                 
         }
 

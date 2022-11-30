@@ -77,10 +77,17 @@ namespace TechTyccoon2
 
         }
 
-        public static void SendCustom(string msg, ConsoleColor color = ConsoleColor.White)
+        public static void SendCustom(string msg, ConsoleColor color = ConsoleColor.White, bool breakline = true)
         {
             Console.ForegroundColor = color;
-            Console.WriteLine($"{msg} \n");
+            if(breakline == true)
+            {
+                Console.WriteLine($"{msg} \n");
+            }
+            else
+            {
+                Console.WriteLine($"{msg}");
+            }
             Console.ForegroundColor = ConsoleColor.White;
 
         }
