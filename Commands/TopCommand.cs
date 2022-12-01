@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechTyccoon2.CompanyTypes;
+using TechTyccoon2.Utilities;
 
 namespace TechTyccoon2.Commands
 {
@@ -30,6 +31,7 @@ namespace TechTyccoon2.Commands
             }
 
             List<Company> top = Companies.companies.ToList();
+            top = top.FindAll(x => x.Defunct == false);
             top = top.OrderBy(x=>x.CurrentFunds).ToList();
             top = top.Reverse<Company>().ToList();
             top = top.GetRange(0, quantity);
@@ -37,7 +39,7 @@ namespace TechTyccoon2.Commands
         
             foreach(Company company in top)
             {
-                Utils.SendCustom($"[{top.IndexOf(company)+1}] - {company.Name} - ${company.CurrentFunds}", ConsoleColor.White, false);
+                Utils.SendCustom($"[{top.IndexOf(company)+1}] [CID: {Companies.companies.IndexOf(company)+1}] - {company.Name} - ${company.CurrentFunds}", ConsoleColor.White, false);
 
             }
         }

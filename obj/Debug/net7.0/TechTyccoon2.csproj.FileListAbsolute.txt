@@ -13,3 +13,6 @@ C:\Users\Julian\Documents\GitHub\TutPlugin\TechTyccoon2\obj\Debug\net7.0\refint\
 C:\Users\Julian\Documents\GitHub\TutPlugin\TechTyccoon2\obj\Debug\net7.0\TechTyccoon2.pdb
 C:\Users\Julian\Documents\GitHub\TutPlugin\TechTyccoon2\obj\Debug\net7.0\TechTyccoon2.genruntimeconfig.cache
 C:\Users\Julian\Documents\GitHub\TutPlugin\TechTyccoon2\obj\Debug\net7.0\ref\TechTyccoon2.dll
+C:\Users\Julian\Documents\GitHub\TutPlugin\TechTyccoon2\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\Julian\Documents\GitHub\TutPlugin\TechTyccoon2\obj\Debug\net7.0\TechTyccoon2.csproj.CopyComplete
+C:\Users\Julian\Documents\GitHub\TutPlugin\TechTyccoon2\bin\Debug\net7.0\RandomNameGeneratorLibrary.dll

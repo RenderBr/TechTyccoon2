@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechTyccoon2.Utilities;
 
 namespace TechTyccoon2.Commands
 {
@@ -46,7 +47,12 @@ namespace TechTyccoon2.Commands
 
 
                 Company Company = Companies.SearchIndex(i - 1);
-                Console.WriteLine($"{Company.Name}\n - Balance: ${Company.CurrentFunds}\n");
+                if(Company.Defunct == true)
+                {
+                    Utils.SendError($"{Company.Name}, located in {Company.Location}, has gone out of business! Overall, they went under: ${Company.CurrentFunds} in funds.");
+                    return;
+                }
+                Console.WriteLine($"\n{Company.Name}\n - Balance: ${Company.CurrentFunds}\n - Located in: {Company.Location}\n - Employees: {Company.EmployeeCount}");
                 GameManager.HandleCommand();
                 return;
             }

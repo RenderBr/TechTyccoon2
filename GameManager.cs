@@ -7,12 +7,15 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using TechTyccoon2.CompanyTypes;
+using TechTyccoon2.Utilities;
 
 namespace TechTyccoon2
 {
     public static class GameManager
     {
         public static int Year { get; set; }
+
+        public static List<string> Names {get; set;}
 
         public static void InitializeGame(bool newGame)
         {
@@ -50,12 +53,12 @@ namespace TechTyccoon2
         public static void InitializeCompanies(int quantity)
         {
             float percentage;
-            for(float i = 0; i < quantity; i++)
+            for (float i = 0; i < quantity; i++)
             {
                 percentage = (int)Math.Round((i+1)/quantity*100);
                 var generated = Companies.GenerateRandomCompany();
                 Companies.Add(generated);
-                Utils.UpdateMessage(generated.Name + " -  Type: " + generated.Type.Name + " " + percentage + "%");
+                Utils.UpdateMessage(i + " Companies Generated - " + percentage + "%");
             }
             Console.WriteLine("\n\nPlease enter a command:\n");
 

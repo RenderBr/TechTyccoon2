@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using TechTyccoon2.CompanyTypes;
+using TechTyccoon2.Utilities;
 
 namespace TechTyccoon2
 {
@@ -33,7 +34,7 @@ namespace TechTyccoon2
             Random r = new Random();
 
             Company generated = new Company(
-                name: "Company " + (companies.Count + 1),
+                name: $"{Utils.GenerateCompanyName()}",
                 description: "This is a random company :)",
                 type: CompanyTypes[r.Next(0, CompanyTypes.Count)],
                 initialfunding: r.Next(4999, 101000)

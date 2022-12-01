@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TechTyccoon2.Commands;
 using TechTyccoon2.CompanyTypes;
+using TechTyccoon2.Utilities;
 
 namespace TechTyccoon2
 {
@@ -18,7 +19,8 @@ namespace TechTyccoon2
             Commands.Progress,
             Commands.Search,
             Commands.Time,
-            Commands.Top
+            Commands.Top,
+            Commands.Active
         };
  
        public static void HandleCommand(List<string> args)
@@ -49,7 +51,7 @@ namespace TechTyccoon2
             public static SearchCommand Search = new SearchCommand();
             public static TimeCommand Time = new TimeCommand();
             public static TopCommand Top = new TopCommand();
-
+            public static ActiveCommand Active = new ActiveCommand();
         }
 
 

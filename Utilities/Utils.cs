@@ -3,13 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.IO;
+using System.ComponentModel;
+using System.Collections.Specialized;
+using System.Linq.Expressions;
+using System.Diagnostics;
+using System.Security.Cryptography;
+using RandomNameGeneratorLibrary;
 
-namespace TechTyccoon2
+namespace TechTyccoon2.Utilities
 {
     public static class Utils
     {
+        public static int Random(int beg, int end)
+        {
+            Random r = new Random();
 
-        public static List<String> ParseParameters(string str)
+            if(end <= 0)
+            {
+                return 0;
+            }
+
+            var i = r.Next(beg, end);
+
+            return i;
+        }
+        public static List<string> ParseParameters(string str)
         {
             var ret = new List<string>();
             var sb = new StringBuilder();
@@ -63,7 +84,7 @@ namespace TechTyccoon2
 
         }
 
-       public static void UpdateMessage(string msg)
+        public static void UpdateMessage(string msg)
         {
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write(msg);
@@ -80,7 +101,7 @@ namespace TechTyccoon2
         public static void SendCustom(string msg, ConsoleColor color = ConsoleColor.White, bool breakline = true)
         {
             Console.ForegroundColor = color;
-            if(breakline == true)
+            if (breakline == true)
             {
                 Console.WriteLine($"{msg} \n");
             }
@@ -97,5 +118,17 @@ namespace TechTyccoon2
             return c == ' ' || c == '\t' || c == '\n';
         }
 
+        public static string GenerateCompanyName()
+        {
+            List<string> suffix = new List<string>() { " Inc", string.Empty, " LLC", " Ltd.", " Corp", " Limited", " Unlimited" };
+
+            Random r = new Random();
+            var Generator = new PersonNameGenerator();
+            string Name = Generator.GenerateRandomLastName();
+
+            Name += suffix[r.Next(0, suffix.Count)];
+
+            return Name;
+        }
     }
 }

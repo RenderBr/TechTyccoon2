@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechTyccoon2.Utilities;
 
 namespace TechTyccoon2.Commands
 {
@@ -44,18 +45,54 @@ namespace TechTyccoon2.Commands
             {
                 foreach (Company c in Companies.companies)
                 {
+                    if(c.Defunct == true)
+                    {
+                        continue;
+                    }
+                    if (c.CurrentFunds <= 1)
+                    {
+                        c.Defunct = true;
+                        c.EmployeeCount = 0;
+                        continue;
+                    }
+                    if(c.EmployeeCount <= 0)
+                    {
+                        c.Defunct = true;
+                        continue;
+                    }
                     float netGain = 0;
 
                     double percentage = r.NextDouble();
 
-                    if (c.SuccessRate - percentage <= 0)
+                    if(c.SuccessRate >= 1)
                     {
-                        c.CurrentFunds += (c.SuccessRate * r.Next(1, (int)c.CurrentFunds));
-                        Console.WriteLine("profit! " + c.SuccessRate + " " + percentage);
+                        c.SuccessRate = 0.95;
+                    }
+
+                    if (percentage < c.SuccessRate)
+                    {
+                        c.CurrentFunds += Utils.Random((int)Math.Min(1, c.CurrentFunds), (int)Math.Abs(c.CurrentFunds));
+                        c.SuccessRate += 0.025;
+                        c.EmployeeCount += Utils.Random(c.EmployeeCount-(c.EmployeeCount+1), (int)(c.EmployeeCount));
+                    }
+                    else
+                    {
+
+                        c.CurrentFunds += Utils.Random((int)Math.Min(1, c.CurrentFunds), (int)Math.Abs(c.CurrentFunds));
+                        c.SuccessRate -= 0.025;
+                        c.EmployeeCount -= Utils.Random(c.EmployeeCount - (c.EmployeeCount + 1), (int)(c.EmployeeCount));
+                    }
+                    if (c.CurrentFunds <= 1)
+                    {
+                        c.Defunct = true;
+                        c.EmployeeCount = 0;
+                        continue;
                     }
 
                     //    c.CompanyRecords.Add(new CompanyRecord(c.Index(), Year, ));
                 }
+
+                GameManager.Year += years;
 
             }
 
