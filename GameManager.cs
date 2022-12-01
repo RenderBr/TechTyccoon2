@@ -8,19 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using TechTyccoon2.CompanyTypes;
 using TechTyccoon2.Utilities;
+using Figgle;
 
 namespace TechTyccoon2
 {
     public static class GameManager
     {
         public static int Year { get; set; }
-
+        public static Version Version { get; set; } = new Version(0, 0, 1, 0);
         public static List<string> Names {get; set;}
 
         public static void InitializeGame(bool newGame)
         {
             if(newGame == true)
             {
+                Console.Clear();
                 Utils.SendError("Please enter a quantity of companies to generate!");
                 var input = int.Parse(Console.ReadLine());
 
@@ -37,14 +39,18 @@ namespace TechTyccoon2
                 }
             }
             else {
-                Console.WriteLine("Hello and welcome to TechTycoon! This is a story-based company generator. It is a C# console app, that is not really a game, but a certain level of enjoyment can be found in this application" +
-                    "\n\n\r To begin, type in a valid quantity, this will be the number of companies we will generate");
+                var gameName = "TECH-TYCOON 2";
+                var author = $"Alpha {Version} - Fully developed by RenderBr / Average";
+                Utils.SendCustom($"{FiggleFonts.Standard.Render(gameName)}{author}", ConsoleColor.Yellow, true);
+                Console.WriteLine("Hello and welcome to TechTycoon! This is a story-based company generator. It is a C# console app, bordering being a game, but not quite. Feel free to screw around with this ebic piece of software." +
+                    "\n\n\rTo begin, type in a valid quantity, this will be the number of companies generated:");
                 int input;
                 bool worked = int.TryParse(Console.ReadLine(), out input);
                 if (!worked)
                 {
                     InitializeGame(true);
                 }
+                Console.Clear();
                 InitializeCompanies(input);
             }
 
@@ -60,7 +66,7 @@ namespace TechTyccoon2
                 Companies.Add(generated);
                 Utils.UpdateMessage(i + " Companies Generated - " + percentage + "%");
             }
-            Console.WriteLine("\n\nPlease enter a command:\n");
+            Console.WriteLine("\n\nPlease enter a command: (Use help)\n");
 
 
             HandleCommand();

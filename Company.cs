@@ -18,7 +18,7 @@ namespace TechTyccoon2
 
         public bool Defunct { get; set; }
 
-        public ICompanyType Type { get; set; }
+        public ICompanyType Industry { get; set; }
 
         private int employeecount = 0;
         public int EmployeeCount { get { return employeecount; } set { if (employeecount == 0) { employeecount = 0; } employeecount = value; } }
@@ -37,7 +37,7 @@ namespace TechTyccoon2
             Name = name;
             Defunct = false;
             Description = description;
-            Type = type;
+            Industry = type;
             StartupFunds = initialfunding;
             CurrentFunds = StartupFunds;
             EmployeeCount = Utils.Random(1, 10);

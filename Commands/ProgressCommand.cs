@@ -60,7 +60,8 @@ namespace TechTyccoon2.Commands
                         c.Defunct = true;
                         continue;
                     }
-                    float netGain = 0;
+                    int initial = (int)c.CurrentFunds;
+                    double netGain;
 
                     double percentage = r.NextDouble();
 
@@ -88,13 +89,28 @@ namespace TechTyccoon2.Commands
                         c.EmployeeCount = 0;
                         continue;
                     }
+                    netGain = (initial - (int)c.CurrentFunds);
+                    Console.WriteLine("Initial: " + initial + " Current:" + c.CurrentFunds + " Net: " + netGain);
+                    if(netGain < 0)
+                    {
+                        c.CompanyRecords.Add(new CompanyRecord(c.Index(), GameManager.Year, (int)Math.Abs(netGain)));
+                    }
+                    else if(netGain == 0)
+                    {
+                        c.CompanyRecords.Add(new CompanyRecord(c.Index(), GameManager.Year, 0));
 
-                    //    c.CompanyRecords.Add(new CompanyRecord(c.Index(), Year, ));
+                    }
+                    else if(netGain > 0)
+                    {
+                        c.CompanyRecords.Add(new CompanyRecord(c.Index(), GameManager.Year, (int)-netGain));
+                    }
+
                 }
+                GameManager.Year++;
 
-                GameManager.Year += years;
 
             }
+
 
         }
 

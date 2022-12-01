@@ -16,3 +16,4 @@ C:\Users\Julian\Documents\GitHub\TutPlugin\TechTyccoon2\obj\Debug\net7.0\ref\Tec
 C:\Users\Julian\Documents\GitHub\TutPlugin\TechTyccoon2\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Users\Julian\Documents\GitHub\TutPlugin\TechTyccoon2\obj\Debug\net7.0\TechTyccoon2.csproj.CopyComplete
 C:\Users\Julian\Documents\GitHub\TutPlugin\TechTyccoon2\bin\Debug\net7.0\RandomNameGeneratorLibrary.dll
+C:\Users\Julian\Documents\GitHub\TutPlugin\TechTyccoon2\bin\Debug\net7.0\Figgle.dll

@@ -14,13 +14,14 @@ namespace TechTyccoon2
     public static class CommandHandler
     {
         public static List<ICommand> CmdList = new List<ICommand>() {
-            Commands.Clear, 
+            Commands.Clear,
             Commands.Help,
             Commands.Progress,
             Commands.Search,
             Commands.Time,
             Commands.Top,
-            Commands.Active
+            Commands.Active,
+            Commands.Records
         };
  
        public static void HandleCommand(List<string> args)
@@ -52,6 +53,7 @@ namespace TechTyccoon2
             public static TimeCommand Time = new TimeCommand();
             public static TopCommand Top = new TopCommand();
             public static ActiveCommand Active = new ActiveCommand();
+            public static RecordsCommand Records = new RecordsCommand();
         }
 
 

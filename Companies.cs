@@ -12,13 +12,18 @@ namespace TechTyccoon2
     public static class Companies
     {
         public static List<Company> companies = new List<Company>();
-        public static List<ICompanyType> CompanyTypes = new List<ICompanyType>() { CompanyType.TechCompany }; 
+        public static List<ICompanyType> CompanyTypes = new List<ICompanyType>() { CompanyType.TechCompany, CompanyType.Restaurant }; 
 
         public static void Add(Company company)
         {
             companies.Add(company);
         }
 
+        /// <summary>
+        /// Searches for an index and retrieves the Company object.
+        /// </summary>
+        /// <param name="Search Index"></param>
+        /// <returns></returns>
         public static Company SearchIndex(int index)
         {
             return companies[index];
@@ -48,7 +53,8 @@ namespace TechTyccoon2
 
     public static class CompanyType
     {
-        public static TechCompany TechCompany = new TechCompany();
+        public static Tech TechCompany = new Tech();
+        public static Restaurant Restaurant= new Restaurant();
 
 
     }
