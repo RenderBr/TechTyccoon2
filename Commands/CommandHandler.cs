@@ -21,7 +21,8 @@ namespace TechTyccoon2
             Commands.Time,
             Commands.Top,
             Commands.Active,
-            Commands.Records
+            Commands.Records,
+            Commands.Exit
         };
  
        public static void HandleCommand(List<string> args)
@@ -54,6 +55,7 @@ namespace TechTyccoon2
             public static TopCommand Top = new TopCommand();
             public static ActiveCommand Active = new ActiveCommand();
             public static RecordsCommand Records = new RecordsCommand();
+            public static ExitCommand Exit = new ExitCommand();
         }
 
 
