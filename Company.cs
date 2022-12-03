@@ -42,7 +42,7 @@ namespace TechTyccoon2
             CurrentFunds = StartupFunds;
             EmployeeCount = Utils.Random(1, 10);
             Location = Utilities.Countries.RandomCountry();
-            SuccessRate = successRate;
+            SuccessRate = successRate + Industry.Rate;
         }
 
         public int Index()

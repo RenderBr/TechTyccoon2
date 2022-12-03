@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using TechTyccoon2.Utilities;
@@ -33,15 +34,27 @@ namespace TechTyccoon2.Commands
                 Utils.SendError("Please enter a company ID! Ex. /history 666");
                 return;
             }
+            if(id <= 0)
+            {
+                Utils.SendError("Invalid company ID!");
+                return;
+            }
 
-            Company c = Companies.SearchIndex(id);
+            Company c = Companies.SearchIndex(id-1);
+
+            if (c.CompanyRecords.Count == 0)
+            {
+                Utils.SendError($"{c.Name} has no records currently! It must be a very new company.");
+                return;
+            }
+
             Console.WriteLine();
             Utils.SendCustom($"{c.Name}'s Yearly Records:", ConsoleColor.Green, false);
 
             foreach (CompanyRecord log in c.CompanyRecords) {
-                if(log.NetGain > 0)
+                if(log.NetGain < 0)
                 {
-                    Utils.SendCustom($"[{log.Year}] +{log.NetGain}", ConsoleColor.White, false);
+                    Utils.SendCustom($"[{log.Year}] +{Math.Abs(log.NetGain)}", ConsoleColor.White, false);
 
                 }
                 else

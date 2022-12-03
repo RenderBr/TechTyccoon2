@@ -13,10 +13,12 @@ namespace TechTyccoon2.CompanyTypes
         public string Name { get; set; }
         public string Description {get; set; }
 
+        public double Rate { get; set; }
         public Restaurant()
         {
             this.Name = "Restaurant";
             this.Description = "This is a physical restaurant business. As you would expect, they manage franchises and sell food for a profit.";
-    }
+            this.Rate = -0.1;
+        }
     }
 }

@@ -8,17 +8,17 @@ using TechTyccoon2.CompanyTypes;
 
 namespace TechTyccoon2.CompanyTypes
 {
-    public class Tech : ICompanyType
+    public class Dental : ICompanyType
     {
         public string Name { get; set; }
         public string Description {get; set; }
         public double Rate { get; set; }
 
-        public Tech()
+        public Dental()
         {
-            this.Name = "Tech";
-            this.Description = "This is a tech company, they build electronics such as computers and smartphones for sale to the general public";
-            this.Rate = 0.1;
+            this.Name = "Dental";
+            this.Description = "A type of healthcare revolving around oral and tooth care.";
+            this.Rate = 0.35;
         }
     }
 }

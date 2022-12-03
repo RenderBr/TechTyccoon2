@@ -12,7 +12,12 @@ namespace TechTyccoon2
     public static class Companies
     {
         public static List<Company> companies = new List<Company>();
-        public static List<ICompanyType> CompanyTypes = new List<ICompanyType>() { CompanyType.TechCompany, CompanyType.Restaurant }; 
+        public static List<ICompanyType> CompanyTypes = new List<ICompanyType>() {
+            CompanyType.TechCompany, 
+            CompanyType.Restaurant, 
+            CompanyType.BookPublishing, 
+            CompanyType.Dental 
+        }; 
 
         public static void Add(Company company)
         {
@@ -55,6 +60,8 @@ namespace TechTyccoon2
     {
         public static Tech TechCompany = new Tech();
         public static Restaurant Restaurant= new Restaurant();
+        public static BookPublishing BookPublishing = new BookPublishing();
+        public static Dental Dental = new Dental();
 
 
     }

@@ -52,7 +52,7 @@ namespace TechTyccoon2.Commands
                     Utils.SendError($"{Company.Name}, located in {Company.Location}, has gone out of business! Overall, they went under: ${Company.CurrentFunds} in funds.");
                     return;
                 }
-                Console.WriteLine($"\n{Company.Name}\n - Balance: ${Company.CurrentFunds}\n - Located in: {Company.Location}\n - Employees: {Company.EmployeeCount}");
+                Console.WriteLine($"\n{Company.Name}\n - Balance: ${Company.CurrentFunds}\n - Industry: {Company.Industry.Name} \n - Located in: {Company.Location}\n - Employees: {Company.EmployeeCount}");
                 GameManager.HandleCommand();
                 return;
             }

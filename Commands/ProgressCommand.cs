@@ -60,7 +60,7 @@ namespace TechTyccoon2.Commands
                         c.Defunct = true;
                         continue;
                     }
-                    int initial = (int)c.CurrentFunds;
+                    double initial = c.CurrentFunds;
                     double netGain;
 
                     double percentage = r.NextDouble();
@@ -70,41 +70,33 @@ namespace TechTyccoon2.Commands
                         c.SuccessRate = 0.95;
                     }
 
-                    if (percentage < c.SuccessRate)
+                    var chance = percentage - c.SuccessRate;
+
+                    if(chance >= 0)
                     {
-                        c.CurrentFunds += Utils.Random((int)Math.Min(1, c.CurrentFunds), (int)Math.Abs(c.CurrentFunds));
-                        c.SuccessRate += 0.025;
-                        c.EmployeeCount += Utils.Random(c.EmployeeCount-(c.EmployeeCount+1), (int)(c.EmployeeCount));
+                        //lose
+                        c.CurrentFunds -= (c.CurrentFunds * 0.1);
+                        double loss = initial - c.CurrentFunds;
+                        c.CompanyRecords.Add(new CompanyRecord(GameManager.Year, (int)loss));
+                        c.EmployeeCount -= (int)Math.Round(c.EmployeeCount * 0.25);
+                        c.SuccessRate -= (c.SuccessRate * 0.1);
+
+                    }
+                    else if (chance <= 0)
+                    {
+                        //win
+                        c.CurrentFunds += (c.CurrentFunds * 0.1);
+                        double gain = initial - c.CurrentFunds;
+                        c.CompanyRecords.Add(new CompanyRecord(GameManager.Year, (int)gain));
+                        c.EmployeeCount += (int)Math.Round(c.EmployeeCount * 0.25);
+                        c.SuccessRate += (c.SuccessRate * 0.1);
+
                     }
                     else
                     {
-
-                        c.CurrentFunds += Utils.Random((int)Math.Min(1, c.CurrentFunds), (int)Math.Abs(c.CurrentFunds));
-                        c.SuccessRate -= 0.025;
-                        c.EmployeeCount -= Utils.Random(c.EmployeeCount - (c.EmployeeCount + 1), (int)(c.EmployeeCount));
+                        //none
                     }
-                    if (c.CurrentFunds <= 1)
-                    {
-                        c.Defunct = true;
-                        c.EmployeeCount = 0;
-                        continue;
-                    }
-                    netGain = (initial - (int)c.CurrentFunds);
-                    Console.WriteLine("Initial: " + initial + " Current:" + c.CurrentFunds + " Net: " + netGain);
-                    if(netGain < 0)
-                    {
-                        c.CompanyRecords.Add(new CompanyRecord(c.Index(), GameManager.Year, (int)Math.Abs(netGain)));
-                    }
-                    else if(netGain == 0)
-                    {
-                        c.CompanyRecords.Add(new CompanyRecord(c.Index(), GameManager.Year, 0));
-
-                    }
-                    else if(netGain > 0)
-                    {
-                        c.CompanyRecords.Add(new CompanyRecord(c.Index(), GameManager.Year, (int)-netGain));
-                    }
-
+               
                 }
                 GameManager.Year++;
 
