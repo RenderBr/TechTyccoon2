@@ -13,8 +13,4 @@
     <PackageReference Include="RandomNameGeneratorLibrary" Version="1.2.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Products\" />
-  </ItemGroup>
-
 </Project>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using TechTyccoon2.CompanyTypes;
+using TechTyccoon2;
 using TechTyccoon2.Utilities;
 
 namespace TechTyccoon2
@@ -13,12 +13,19 @@ namespace TechTyccoon2
     {
         public static List<Company> companies = new List<Company>();
         public static List<ICompanyType> CompanyTypes = new List<ICompanyType>() {
-            CompanyType.TechCompany, 
-            CompanyType.Restaurant, 
-            CompanyType.BookPublishing, 
-            CompanyType.Dental,
-            CompanyType.Failure
-        }; 
+            CompanyType.TechCompany,
+            CompanyType.Restaurant,
+            CompanyType.BookPublishing,
+            CompanyType.Dental
+        };
+
+        public enum Types
+        {
+            Tech,
+            Restaurant,
+            BookPublishing,
+            Dental
+        }
 
         public static void Add(Company company)
         {
@@ -35,10 +42,27 @@ namespace TechTyccoon2
             return companies[index];
         }
 
+        public static ICompanyType Industry(Types type)
+        {
+            switch (type)
+            {
+                case Types.Tech:
+                    return CompanyTypes.First(x => x.Name == "Tech");
+                case Types.Restaurant:
+                    return CompanyTypes.First(x => x.Name == "Restaurant");
+                case Types.BookPublishing:
+                    return CompanyTypes.First(x => x.Name == "Book Publishing");
+                case Types.Dental:
+                    return CompanyTypes.First(x => x.Name == "Dental");
+                default:
+                    return null;
+            }
+        }
+
         public static Company SearchName(string name)
         {
             var c = companies.FirstOrDefault(x => x.Name.ToLower() == name);
-            if(c == null)
+            if (c == null)
             {
                 return null;
             }
@@ -72,10 +96,9 @@ namespace TechTyccoon2
     public static class CompanyType
     {
         public static Tech TechCompany = new Tech();
-        public static Restaurant Restaurant= new Restaurant();
+        public static Restaurant Restaurant = new Restaurant();
         public static BookPublishing BookPublishing = new BookPublishing();
         public static Dental Dental = new Dental();
-        public static TestFailure Failure = new TestFailure();
 
     }
 }

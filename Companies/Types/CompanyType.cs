@@ -1,4 +1,4 @@
-﻿namespace TechTyccoon2.CompanyTypes
+﻿namespace TechTyccoon2
 {
     public interface ICompanyType
     {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechTyccoon2;
+using TechTyccoon2.Providers;
 using TechTyccoon2.Utilities;
 
 namespace TechTyccoon2.Commands
@@ -62,7 +64,7 @@ namespace TechTyccoon2.Commands
                 Company Company = Companies.SearchIndex(i - 1);
                 if(Company.Defunct == true)
                 {
-                    Utils.SendError($"{Company.Name}, located in {Company.Location}, has gone out of business! Overall, they went under: ${Company.CurrentFunds} in funds.");
+                    Utils.SendError($"{Company.Name}, located in {Company.Location}, has gone out of business! Overall, they went under: ${Company.CurrentFunds-Company.StartupFunds} in funds.");
                     return;
                 }
                 Console.WriteLine($"\n{Company.Name}\n - Balance: ${Company.CurrentFunds}\n - Industry: {Company.Industry.Name} \n - Located in: {Company.Location}\n - Employees: {Company.EmployeeCount}");

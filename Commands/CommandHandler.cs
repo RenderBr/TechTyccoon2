@@ -6,7 +6,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using TechTyccoon2.Commands;
-using TechTyccoon2.CompanyTypes;
+using TechTyccoon2;
+using TechTyccoon2.Providers;
 using TechTyccoon2.Utilities;
 
 namespace TechTyccoon2

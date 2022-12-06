@@ -8,7 +8,7 @@ namespace TechTyccoon2
 {
     public class CompanyRecord
     {
-        public int Year { get ; set; }
+        public int Year { get; set; }
         public int NetGain { get; set; }
 
         public CompanyRecord(int year, int netGain)

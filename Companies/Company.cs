@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TechTyccoon2.CompanyTypes;
 using TechTyccoon2.Utilities;
 
 namespace TechTyccoon2
@@ -41,7 +40,7 @@ namespace TechTyccoon2
             StartupFunds = initialfunding;
             CurrentFunds = StartupFunds;
             EmployeeCount = Utils.Random(1, 10);
-            Location = Utilities.Countries.RandomCountry();
+            Location = Countries.RandomCountry();
             SuccessRate = successRate + Industry.Rate;
         }
 

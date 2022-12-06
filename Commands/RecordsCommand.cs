@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using TechTyccoon2;
+using TechTyccoon2.Providers;
 using TechTyccoon2.Utilities;
 
 namespace TechTyccoon2.Commands

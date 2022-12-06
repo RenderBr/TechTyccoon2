@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Principal;
 using TechTyccoon2;
-using TechTyccoon2.CompanyTypes;
+using TechTyccoon2.Providers;
 
 namespace TechTycoon2;
 class Program
