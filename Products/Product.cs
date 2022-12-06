@@ -34,6 +34,21 @@ namespace TechTyccoon2.Products
         public int YearReleased { get; set; }
 
         public int YearsInMaking { get; set; }
-        
+
+        public Product(string name, string description, IProductType productType, Company owner, Company creator, double marketPrice, double costPerUnit, double unitProfit, int unitsSold, bool released, int yearReleased, int yearsInMaking)
+        {
+            Name = name;
+            Description = description;
+            ProductType = productType;
+            Owner = owner;
+            Creator = creator;
+            MarketPrice = marketPrice;
+            CostPerUnit = costPerUnit;
+            UnitProfit = unitProfit;
+            UnitsSold = unitsSold;
+            Released = released;
+            YearReleased = yearReleased;
+            YearsInMaking = yearsInMaking;
+        }
     }
 }

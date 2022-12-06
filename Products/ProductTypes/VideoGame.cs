@@ -18,7 +18,7 @@ namespace TechTyccoon2.Products.ProductTypes
         public int Popularity { get; set; }
         public int YearsToMake { get; set; }
 
-        public VideoGame(string name, string description, ICompanyType industry, double successRate, int popularity, int yearsToMake)
+        public VideoGame()
         {
             Random r = new Random();
             Name = "Video Game";
