@@ -15,6 +15,8 @@ namespace TechTyccoon2.Products.ProductTypes
         public string Description { get; set; }
         public ICompanyType Industry { get; set; }
         public double SuccessRate { get; set; }
+
+        public double MedianPrice { get; set; }
         public int Popularity { get; set; }
         public int YearsToMake { get; set; }
 
@@ -27,6 +29,7 @@ namespace TechTyccoon2.Products.ProductTypes
             SuccessRate = r.NextDouble()-0.2;
             Popularity = 45;
             YearsToMake = 3;
+            MedianPrice = 45;
         }
     }
 }

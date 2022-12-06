@@ -13,6 +13,7 @@ namespace TechTyccoon2
         public string Description { get; set; }
 
         public ICompanyType Industry { get; set; }
+        public double MedianPrice { get; set; }
 
         public double SuccessRate { get; set; } // 0.01-1 (determines if product will succeed or not)
 

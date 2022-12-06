@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using TechTyccoon2;
@@ -70,7 +71,17 @@ namespace TechTyccoon2.Commands
 
                     var chance = percentage - c.SuccessRate;
 
-                    if(chance >= 0)
+
+                    if(r.NextDouble() < 0.5 && !GameManager.ProductionManager.InstancedProducts.Any(x=>x.Owner == c && x.Released == false))
+                    {
+                        GameManager.ProductionManager.CreateProduct(c);
+                    }
+                    else if(GameManager.ProductionManager.InstancedProducts.Any(x=>x.Owner == c && x.Released == false))
+                    {
+                        GameManager.ProductionManager.FurtherProduct(GameManager.ProductionManager.InstancedProducts.First(x => x.Owner == c && x.Released == false));
+                    }
+
+                    if (chance >= 0)
                     {
                         //lose
                         c.CurrentFunds -= (c.CurrentFunds * 0.1);

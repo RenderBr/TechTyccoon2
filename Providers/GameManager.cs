@@ -18,6 +18,7 @@ namespace TechTyccoon2.Providers
         public static Version Version { get; set; } = new Version(0, 0, 1, 0);
         public static List<string> Names { get; set; }
 
+        public static ProductsManager ProductionManager = new ProductsManager();
         public static void InitializeGame(bool newGame)
         {
             if (newGame == true)
