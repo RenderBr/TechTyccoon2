@@ -21,7 +21,7 @@ namespace TechTyccoon2.Commands
         
         public void Execute(List<string> args = null)
         {
-          List<Company> list = Companies.companies.FindAll(x => x.Defunct);
+          List<Company> list = Companies.companies.FindAll(x => !x.Defunct);
 
             
 

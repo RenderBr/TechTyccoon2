@@ -31,8 +31,21 @@ namespace TechTyccoon2.Commands
 
                 if (succeeded == false)
                 {
-                    Utils.SendError("Invalid company id!");
-                    return;
+
+                    Company c = Companies.SearchName(args[1].ToLower());
+                    if(c == null)
+                    {
+                        Utils.SendError("Invalid company name!");
+                        return;
+                    }
+
+                    if (c.Defunct == true)
+                    {
+                        Utils.SendError($"{c.Name}, located in {c.Location}, has gone out of business! Overall, they went under: ${c.CurrentFunds} in funds.");
+                        return;
+                    }
+                    Console.WriteLine($"\n{c.Name}\n - Balance: ${c.CurrentFunds}\n - Industry: {c.Industry.Name} \n - Located in: {c.Location}\n - Employees: {c.EmployeeCount}");
+                    return; 
                 }
                 if (i >= Companies.Count()+1)
                 {

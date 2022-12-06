@@ -16,7 +16,8 @@ namespace TechTyccoon2
             CompanyType.TechCompany, 
             CompanyType.Restaurant, 
             CompanyType.BookPublishing, 
-            CompanyType.Dental 
+            CompanyType.Dental,
+            CompanyType.Failure
         }; 
 
         public static void Add(Company company)
@@ -34,6 +35,18 @@ namespace TechTyccoon2
             return companies[index];
         }
 
+        public static Company SearchName(string name)
+        {
+            var c = companies.FirstOrDefault(x => x.Name.ToLower() == name);
+            if(c == null)
+            {
+                return null;
+            }
+
+            return c;
+        }
+
+
         public static int Count()
         {
             return companies.Count;
@@ -45,7 +58,7 @@ namespace TechTyccoon2
 
             Company generated = new Company(
                 name: $"{Utils.GenerateCompanyName()}",
-                description: "This is a random company :)",
+                description: Slogans.RandomMotto(),
                 type: CompanyTypes[r.Next(0, CompanyTypes.Count)],
                 initialfunding: r.Next(4999, 101000)
                 );
@@ -62,7 +75,7 @@ namespace TechTyccoon2
         public static Restaurant Restaurant= new Restaurant();
         public static BookPublishing BookPublishing = new BookPublishing();
         public static Dental Dental = new Dental();
-
+        public static TestFailure Failure = new TestFailure();
 
     }
 }

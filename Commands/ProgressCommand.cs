@@ -45,19 +45,15 @@ namespace TechTyccoon2.Commands
             {
                 foreach (Company c in Companies.companies)
                 {
-                    if(c.Defunct == true)
+                    if(c.Defunct)
                     {
                         continue;
                     }
                     if (c.CurrentFunds <= 1)
                     {
                         c.Defunct = true;
+                        Utils.SendCustom($"{c.Name} has gone out of business! R.I.P (Year: {GameManager.Year})", ConsoleColor.Yellow);
                         c.EmployeeCount = 0;
-                        continue;
-                    }
-                    if(c.EmployeeCount <= 0)
-                    {
-                        c.Defunct = true;
                         continue;
                     }
                     double initial = c.CurrentFunds;
@@ -95,6 +91,12 @@ namespace TechTyccoon2.Commands
                     else
                     {
                         //none
+                    }
+
+                    if(c.CurrentFunds <= 1)
+                    {
+                        c.Defunct = true;
+                        Utils.SendCustom($"[CID: {Companies.companies.IndexOf(c)}] {c.Name} has gone out of business! R.I.P (Year: {GameManager.Year})", ConsoleColor.Yellow);
                     }
                
                 }
