@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechTyccoon2;
+using TechTyccoon2.Products;
 using TechTyccoon2.Providers;
 using TechTyccoon2.Utilities;
 
@@ -46,7 +47,12 @@ namespace TechTyccoon2.Commands
                         Utils.SendError($"{c.Name}, located in {c.Location}, has gone out of business! Overall, they went under: ${c.CurrentFunds} in funds.");
                         return;
                     }
-                    Console.WriteLine($"\n{c.Name}\n - Balance: ${c.CurrentFunds}\n - Industry: {c.Industry.Name} \n - Located in: {c.Location}\n - Employees: {c.EmployeeCount}");
+                    int totalsales = 0;
+                    foreach(Product p in GameManager.ProductionManager.ProductList(c))
+                    {
+                        totalsales += (int)(p.UnitsSold * p.UnitProfit);
+                    }
+                    Console.WriteLine($"\n{c.Name}\n - Balance: ${c.CurrentFunds}\n - Industry: {c.Industry.Name} \n - Located in: {c.Location}\n - Employees: {c.EmployeeCount}\n - Products: {GameManager.ProductionManager.ProductList(c).Count} - ${totalsales}");
                     return; 
                 }
                 if (i >= Companies.Count()+1)
@@ -67,7 +73,12 @@ namespace TechTyccoon2.Commands
                     Utils.SendError($"{Company.Name}, located in {Company.Location}, has gone out of business! Overall, they went under: ${Company.CurrentFunds-Company.StartupFunds} in funds.");
                     return;
                 }
-                Console.WriteLine($"\n{Company.Name}\n - Balance: ${Company.CurrentFunds}\n - Industry: {Company.Industry.Name} \n - Located in: {Company.Location}\n - Employees: {Company.EmployeeCount}");
+                int totalSales = 0;
+                foreach (Product p in GameManager.ProductionManager.ProductList(Company))
+                {
+                    totalSales += (int)(p.UnitsSold * p.UnitProfit);
+                }
+                Console.WriteLine($"\n{Company.Name}\n - Balance: ${Company.CurrentFunds}\n - Industry: {Company.Industry.Name} \n - Located in: {Company.Location}\n - Employees: {Company.EmployeeCount}\n - Products: {GameManager.ProductionManager.ProductList(Company).Count} - ${totalSales}");
                 GameManager.HandleCommand();
                 return;
             }

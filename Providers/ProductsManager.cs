@@ -33,13 +33,15 @@ namespace TechTyccoon2
 
             product = new Product(Industry.Name, Industry.Description, Industry, company, company, Industry.MedianPrice + (r.Next(-10 * (int)(Math.Round(Industry.MedianPrice * 0.08)), 10 * (int)(Math.Round(Industry.MedianPrice * 0.08)))));
             InstancedProducts.Add(product);
-            Utils.SendSuccess($"{company.Name} has started work on a new product called {product.Name} with a market price of ${product.MarketPrice} (profit/u: ${product.UnitProfit}), set to release in {product.ProductType.YearsToMake} years!");
+            Utils.SendSuccess($"{company.Name} has started work on a new product called {product.Name} with a market price of ${Math.Round(product.MarketPrice)} (profit/u: ${Math.Round(product.UnitProfit)}), set to release in {product.ProductType.YearsToMake} years!");
         }
 
         public void ReleaseProduct(Product product)
         {
             product.Released = true;
             Utils.SendCustom($"{product.Owner.Name} has released the product {product.Name} with a market price of ${Math.Round(product.MarketPrice)} (profit/u: ${Math.Round(product.UnitProfit)})!");
+            product.Owner.CurrentFunds -= product.MarketPrice * 1000;
+
 
         }
 
@@ -50,13 +52,40 @@ namespace TechTyccoon2
                 ReleaseProduct(product);
                 return;
             }
+            product.Owner.CurrentFunds -= product.MarketPrice * 100;
             product.YearsInMaking++;
 
         }
 
-        public void ApplySales()
+        public void ApplySales(Company company)
         {
+            List<Product> products = ProductList(company);
+            Random r = new Random();
+            foreach(Product product in products)
+            {
+                var chance = r.NextDouble();
+                chance = chance - product.ProductType.SuccessRate;
+                if (chance >= 0)
+                {
+                    //low sales rate
+                    product.UnitsSold += (int)(chance * 100);
+                    company.CurrentFunds -= product.UnitsSold * product.UnitProfit;
+                }
+                else if (chance <= 0)
+                {
+                    product.UnitsSold += (int)(chance * 10000);
+                    company.CurrentFunds -= product.UnitsSold * product.UnitProfit;
+                    //high sales rate
+                }
+            }
 
+        }
+
+        public List<Product> ProductList(Company company)
+        {
+            var p = InstancedProducts.Where(x => x.Owner == company);
+
+            return p.ToList();
         }
 
         public void GetStats()

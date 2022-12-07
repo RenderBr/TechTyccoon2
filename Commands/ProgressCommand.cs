@@ -81,6 +81,8 @@ namespace TechTyccoon2.Commands
                         GameManager.ProductionManager.FurtherProduct(GameManager.ProductionManager.InstancedProducts.First(x => x.Owner == c && x.Released == false));
                     }
 
+                    GameManager.ProductionManager.ApplySales(c);
+
                     if (chance >= 0)
                     {
                         //lose
